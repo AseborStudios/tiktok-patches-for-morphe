@@ -94,9 +94,9 @@ val simSpoofPatch = bytecodePatch(
             0,
             "invoke-static {}, Lapp/morphe/extension/tiktok/settings/SettingsStatus;->enableSimSpoof()V",
         )
+        SettingsStatusLoadFingerprint.method.addInstruction(
+            0,
+            "invoke-static {}, Lapp/morphe/extension/tiktok/settings/SettingsStatus;->enableIncognito()V",
+        )
     }
 }
-SettingsStatusLoadFingerprint.method.addInstruction(
-    0,
-    "invoke-static {}, Lapp/morphe/extension/tiktok/settings/SettingsStatus;->enableIncognito()V",
-)
