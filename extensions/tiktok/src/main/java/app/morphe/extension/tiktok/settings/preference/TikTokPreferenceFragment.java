@@ -42,6 +42,7 @@ import app.morphe.extension.tiktok.settings.preference.categories.FeedNavigation
 import app.morphe.extension.tiktok.settings.preference.categories.InterfacePreferenceCategory;
 import app.morphe.extension.tiktok.settings.preference.categories.ShareSheetPreferenceCategory;
 import app.morphe.extension.tiktok.settings.preference.categories.SimSpoofPreferenceCategory;
+import app.morphe.extension.tiktok.settings.preference.categories.IncognitoPreferenceCategory;
 
 @SuppressWarnings("deprecation")
 public class TikTokPreferenceFragment extends AbstractPreferenceFragment {
@@ -57,6 +58,7 @@ public class TikTokPreferenceFragment extends AbstractPreferenceFragment {
         COMMENTS("Comments and translation", "Translation, reactions, copy options, and split view."),
         DOWNLOADS("Downloads", "Path, watermark, and offline videos."),
         REGION("Region spoof", "Change the region TikTok reads."),
+        INCOGNITO("Incognito", "Watch without feeding the algorithm."),
         SHARE_SHEET("Share sheet", "Send to, share via app, and video actions."),
         BEHAVIOR("App behavior", "Sharing, playback, and gestures."),
         DIAGNOSTICS("Diagnostics", "Logging, crash capture, and report export.");
@@ -309,6 +311,12 @@ public class TikTokPreferenceFragment extends AbstractPreferenceFragment {
                     Settings.SIM_SPOOF.get()
             ));
         }
+        if (SettingsStatus.incognitoEnabled) {
+            addMenu(screen, Section.INCOGNITO, SettingsMenuPreference.Icon.REGION, countEnabled(
+                Settings.INCOGNITO.get(),
+                Settings.INCOGNITO_LOCK.get()
+            ));
+        }
         if (SettingsStatus.shareSheetEnabled) {
             addMenu(screen, Section.SHARE_SHEET, SettingsMenuPreference.Icon.SHARE, countEnabled(
                     Settings.SHARE_SHEET_SEND_TO.get(),
@@ -385,6 +393,9 @@ public class TikTokPreferenceFragment extends AbstractPreferenceFragment {
                 break;
             case REGION:
                 category = new SimSpoofPreferenceCategory(context, screen);
+                break;
+            case INCOGNITO:
+                category = new IncognitoPreferenceCategory(context, screen);
                 break;
             case SHARE_SHEET:
                 category = new ShareSheetPreferenceCategory(context, screen);
