@@ -158,6 +158,9 @@ public class Settings extends BaseSettings {
             new BooleanSetting("enable_non_personalized_search", FALSE, true);
     public static final BooleanSetting ENABLE_LIVE_SEARCH =
             new BooleanSetting("enable_live_search", FALSE, true);
+    public static final BooleanSetting INCOGNITO = new BooleanSetting("incognito", FALSE, true);
+    public static final BooleanSetting INCOGNITO_LOCK = new BooleanSetting("incognito_lock", FALSE, true);
+    public static final StringSetting INCOGNITO_PASSWORD_HASH = new StringSetting("incognito_password_hash", "");
     public static final BooleanSetting SIM_SPOOF = new BooleanSetting("simspoof", FALSE, true);
     public static final StringSetting SIM_SPOOF_ISO = new StringSetting("simspoof_iso", "us");
     public static final StringSetting SIMSPOOF_MCCMNC = new StringSetting("simspoof_mccmnc", "310260");
