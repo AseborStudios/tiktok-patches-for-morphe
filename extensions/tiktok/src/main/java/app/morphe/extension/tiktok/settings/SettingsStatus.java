@@ -20,6 +20,7 @@ public class SettingsStatus {
     public static boolean copyCommentsWithoutUsernameEnabled = false;
     public static boolean downloadEnabled = false;
     public static boolean simSpoofEnabled = false;
+    public static boolean incognitoEnabled = false;
     public static boolean captchaPopupSuppressionEnabled = false;
     public static boolean promotionalBannersEnabled = false;
     public static boolean longPressSpeedLockEnabled = false;
@@ -100,6 +101,10 @@ public class SettingsStatus {
         simSpoofEnabled = true;
     }
 
+    public static void enableIncognito() {
+    incognitoEnabled = true;
+    }
+    
     public static void enableCaptchaPopupSuppression() {
         captchaPopupSuppressionEnabled = true;
     }
