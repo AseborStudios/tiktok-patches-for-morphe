@@ -12,7 +12,7 @@ import app.morphe.extension.tiktok.settings.preference.TogglePreference;
 public class CommentsPreferenceCategory extends ConditionalPreferenceCategory {
     public CommentsPreferenceCategory(Context context, PreferenceScreen screen) {
         super(context, screen);
-        setTitle("Comments and translation");
+        setTitle("Комментарии");
     }
 
     @Override
@@ -27,64 +27,64 @@ public class CommentsPreferenceCategory extends ConditionalPreferenceCategory {
     @Override
     public void addPreferences(Context context) {
         if (SettingsStatus.commentSortControlsEnabled) {
-            addPreference(group(context, "Comment sorting"));
+            addPreference(group(context, "Сортировка комментариев"));
             addPreference(new TogglePreference(
                     context,
-                    "Force show comment sorting",
-                    "Expose TikTok's native full sort menu instead of leaving it to rollout gates. "
-                            + "This includes TikTok's ranked hot order and time sort. Media and Creator "
-                            + "only appear when TikTok reports matching comments.",
+                    "Принудительно показать сортировку",
+                    "Открывает нативное меню сортировки TikTok вместо того, чтобы ждать развёртывания. "
+                            + "Включает сортировку по «горячему» и по времени. «Медиа» и «Автор» "
+                            + "появляются только если TikTok сообщает о совпадающих комментариях.",
                     Settings.COMMENT_SORT_FORCE_SHOW
             ));
         }
 
         if (SettingsStatus.commentTranslationEnabled) {
-            addPreference(group(context, "Translation"));
+            addPreference(group(context, "Перевод"));
             addPreference(new TogglePreference(
                     context,
-                    "Auto translate comments",
-                    "Automatically translates loaded comment batches using TikTok's translation system.",
+                    "Автоперевод комментариев",
+                    "Автоматически переводит загруженные партии комментариев через систему перевода TikTok.",
                     Settings.COMMENT_BATCH_TRANSLATION
             ));
         }
 
         if (SettingsStatus.hideCommentQuickReactionsEnabled
                 || SettingsStatus.copyCommentsWithoutUsernameEnabled) {
-            addPreference(group(context, "Comment actions"));
+            addPreference(group(context, "Действия с комментариями"));
         }
         if (SettingsStatus.hideCommentQuickReactionsEnabled) {
             addPreference(new TogglePreference(
                     context,
-                    "Hide quick comment reactions",
-                    "Hide TikTok's exposed quick emoji row in supported comment inputs.",
+                    "Скрыть быстрые реакции",
+                    "Скрывает строку быстрых эмодзи в поддерживаемых полях ввода комментариев.",
                     Settings.HIDE_COMMENT_QUICK_REACTIONS
             ));
         }
         if (SettingsStatus.copyCommentsWithoutUsernameEnabled) {
             addPreference(new TogglePreference(
                     context,
-                    "Copy comments without username",
-                    "Copy only the comment text when using TikTok's copy comment action.",
+                    "Копировать без имени пользователя",
+                    "Копирует только текст комментария при использовании действия «Копировать комментарий».",
                     Settings.COPY_COMMENTS_WITHOUT_USERNAME
             ));
         }
 
         if (SettingsStatus.foldableSplitViewEnabled) {
-            addPreference(group(context, "Large-screen layout"));
+            addPreference(group(context, "Раскладка для больших экранов"));
             addPreference(new TogglePreference(
                     context,
-                    "Force split video/comment view",
-                    "Show comments beside the video instead of as a bottom sheet once the screen is at least "
-                            + "as wide as the threshold below. Intended for foldables TikTok doesn't already "
-                            + "treat as tablet-class. Requires restart.",
+                    "Раздельный вид видео/комментариев",
+                    "Показывает комментарии рядом с видео, а не снизу, когда ширина экрана не меньше "
+                            + "порога ниже. Предназначено для складных устройств, которые TikTok не "
+                            + "считает планшетами. Требуется перезапуск.",
                     Settings.FOLDABLE_SPLIT_VIEW
             ));
             addPreference(new NumberInputPreference(
                     context,
-                    "Split view width threshold (dp)",
-                    "Minimum screen width, in dp, before the split view is forced. Export a diagnostic report "
-                            + "after opening a video's comments to see your device's measured width. "
-                            + "Requires restart.",
+                    "Порог ширины раздельного вида (dp)",
+                    "Минимальная ширина экрана в dp, при которой включается раздельный вид. Экспортируй "
+                            + "диагностический отчёт после открытия комментариев к видео, чтобы увидеть "
+                            + "измеренную ширину устройства. Требуется перезапуск.",
                     Settings.FOLDABLE_SPLIT_VIEW_MIN_WIDTH_DP,
                     200,
                     1200
