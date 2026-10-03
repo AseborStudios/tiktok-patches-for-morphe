@@ -139,13 +139,13 @@ final class SupportUi {
                 int verticalInsetDp,
                 int radiusDp
         ) {
-            fill.setColor(SettingsUi.isDarkMode()
-                    ? Color.argb(255, 35, 17, 25)
-                    : Color.argb(255, 255, 247, 250));
-            fill.setStyle(Paint.Style.FILL);
-            line.setColor(SettingsUi.isDarkMode()
-                    ? Color.argb(56, 240, 45, 99)
-                    : Color.argb(52, 240, 45, 99));
+    fill.setColor(SettingsUi.isDarkMode()
+        ? Color.argb(255, 17, 30, 40)
+        : Color.argb(255, 240, 250, 255));
+    fill.setStyle(Paint.Style.FILL);
+    line.setColor(SettingsUi.isDarkMode()
+        ? Color.argb(56, 37, 244, 238)
+        : Color.argb(52, 37, 244, 238));
             line.setStyle(Paint.Style.STROKE);
             line.setStrokeWidth(Math.max(1, SettingsUi.dp(context, 1)));
             horizontalInset = SettingsUi.dp(context, horizontalInsetDp);
