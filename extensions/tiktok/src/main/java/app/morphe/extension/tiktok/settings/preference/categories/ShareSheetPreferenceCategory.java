@@ -18,7 +18,7 @@ import app.morphe.extension.tiktok.sharesheet.VideoActionOptions;
 public class ShareSheetPreferenceCategory extends ConditionalPreferenceCategory {
     public ShareSheetPreferenceCategory(Context context, PreferenceScreen screen) {
         super(context, screen);
-        setTitle("Share sheet");
+        setTitle("Поделиться");
     }
 
     @Override
@@ -28,27 +28,26 @@ public class ShareSheetPreferenceCategory extends ConditionalPreferenceCategory 
 
     @Override
     public void addPreferences(Context context) {
-        addPreference(group(context, "Quick share"));
+        addPreference(group(context, "Быстрая отправка"));
         addPreference(new TogglePreference(
                 context,
-                "Show \"Send to\"",
-                "Show quick-share contacts at the top of the share sheet.",
+                "Показывать «Отправить»",
+                "Показывает контакты для быстрой отправки в верхней части меню «Поделиться».",
                 Settings.SHARE_SHEET_SEND_TO
         ));
 
-        addPreference(group(context, "Sharing apps"));
+        addPreference(group(context, "Приложения"));
         addPreference(new TogglePreference(
                 context,
-                "Show \"Share via\"",
-                "Show the row of sharing apps (Repost, Copy link, Discord, WhatsApp, ...).",
+                "Показывать «Поделиться через»",
+                "Показывает строку приложений (Репост, Копировать ссылку, Discord, WhatsApp, ...).",
                 Settings.SHARE_SHEET_CHANNELS
         ));
         addPreference(new ShareSheetItemSelectionPreference(
                 context,
-                "Allowed sharing apps",
-                "Allowed sharing apps",
-                "Only apps TikTok has exposed on this installation are listed. Open a video's Share menu "
-                        + "once to discover currently available apps; newly discovered apps start enabled.",
+                "Разрешённые приложения",
+                "Разрешённые приложения",
+                "Перечислены только те приложения, которые TikTok показал на этом устройстве. Открой меню «Поделиться» у видео один раз, чтобы обнаружить доступные приложения; новые приложения включаются автоматически.",
                 Settings.SHARE_SHEET_CHANNELS_ENABLED,
                 ShareChannelOptions::parseEnabledKeys,
                 ShareChannelOptions::serializeEnabledKeys,
@@ -56,19 +55,18 @@ public class ShareSheetPreferenceCategory extends ConditionalPreferenceCategory 
                 ShareSheetPreferenceCategory::observedChannelKeys
         ));
 
-        addPreference(group(context, "Video actions"));
+        addPreference(group(context, "Действия с видео"));
         addPreference(new TogglePreference(
                 context,
-                "Show \"Video Actions\"",
-                "Show the actions grid (Report, Download, Duet, Stitch, Playback Speed, ...).",
+                "Показывать «Действия с видео»",
+                "Показывает сетку действий (Пожаловаться, Скачать, Дуэт, Стич, Скорость, ...).",
                 Settings.SHARE_SHEET_ACTIONS
         ));
         addPreference(new ShareSheetItemSelectionPreference(
                 context,
-                "Allowed video actions",
-                "Allowed video actions",
-                "Only actions TikTok has exposed on this installation are listed. Open a video's Share menu "
-                        + "once to discover currently available actions; newly discovered actions start enabled.",
+                "Разрешённые действия",
+                "Разрешённые действия",
+                "Перечислены только те действия, которые TikTok показал на этом устройстве. Открой меню «Поделиться» у видео один раз, чтобы обнаружить доступные действия; новые действия включаются автоматически.",
                 Settings.SHARE_SHEET_ACTIONS_ENABLED,
                 VideoActionOptions::parseEnabledKeys,
                 VideoActionOptions::serializeEnabledKeys,
