@@ -17,7 +17,7 @@ import app.morphe.extension.tiktok.settings.preference.TogglePreference;
 public class ExtensionPreferenceCategory extends ConditionalPreferenceCategory {
     public ExtensionPreferenceCategory(Context context, PreferenceScreen screen) {
         super(context, screen);
-        setTitle("App behavior");
+        setTitle("Поведение");
     }
 
     @Override
@@ -27,59 +27,58 @@ public class ExtensionPreferenceCategory extends ConditionalPreferenceCategory {
 
     @Override
     public void addPreferences(Context context) {
-        addPreference(group(context, "Links and sharing"));
+        addPreference(group(context, "Ссылки и отправка"));
         addPreference(new TogglePreference(
                 context,
-                "Sanitize sharing links",
-                "Remove tracking parameters from shared links.",
+                "Очищать ссылки при отправке",
+                "Убирает трекинг-параметры из отправляемых ссылок.",
                 BaseSettings.SANITIZE_SHARING_LINKS
         ));
         if (SettingsStatus.externalBrowserEnabled) {
             addPreference(new TogglePreference(
                     context,
-                    "Open external links directly",
-                    "Open profile and story website links in your system browser instead of TikTok's in-app browser.",
+                    "Открывать внешние ссылки напрямую",
+                    "Открывает ссылки на сайты в профиле и историях в системном браузере, а не во встроенном браузере TikTok.",
                     Settings.OPEN_EXTERNAL_LINKS
             ));
         }
         if (SettingsStatus.autoScrollEnabled) {
             addPreference(new TogglePreference(
                     context,
-                    "Force show Auto scroll",
-                    "Expose TikTok's native Auto scroll action on eligible For You videos when account rollout "
-                            + "gates hide it. TikTok still decides whether the current video and screen support it.",
+                    "Принудительно показать автопрокрутку",
+                    "Показывает нативное действие «Автопрокрутка» на подходящих видео в рекомендациях, даже если TikTok скрывает его. TikTok всё равно решает, поддерживает ли видео и экран эту функцию.",
                     Settings.FORCE_SHOW_AUTO_SCROLL
             ));
         }
 
-        addPreference(group(context, "Playback"));
+        addPreference(group(context, "Воспроизведение"));
         addPreference(new TogglePreference(
                 context,
-                "Show seekbar",
-                "Show the native seekbar on videos where TikTok would normally hide it.",
+                "Показывать полосу прокрутки",
+                "Показывает нативную полосу прокрутки на видео, где TikTok обычно её скрывает.",
                 Settings.SHOW_SEEKBAR
         ));
         if (SettingsStatus.seekbarThumbnailEnabled) {
             addPreference(new TogglePreference(
                     context,
-                    "Show seekbar thumbnail",
-                    "Show a video preview thumbnail while dragging the seekbar.",
+                    "Показывать превью при перемотке",
+                    "Показывает миниатюру видео при перетаскивании полосы прокрутки.",
                     Settings.SHOW_SEEKBAR_THUMBNAIL
             ));
         }
         if (SettingsStatus.stopVideoLoopingEnabled) {
             addPreference(new TogglePreference(
                     context,
-                    "Stop video looping",
-                    "Stop videos at the end instead of replaying them.",
+                    "Останавливать видео в конце",
+                    "Останавливает видео в конце вместо повторного воспроизведения.",
                     Settings.STOP_VIDEO_LOOPING
             ));
         }
         if (SettingsStatus.resumeVideoAfterScrollEnabled) {
             addPreference(new TogglePreference(
                     context,
-                    "Resume videos after scrolling",
-                    "Continue supported videos from where you stopped when you scroll back to them.",
+                    "Продолжать видео после прокрутки",
+                    "Продолжает поддерживаемые видео с того места, где ты остановился, когда прокручиваешь к ним обратно.",
                     Settings.RESUME_VIDEO_AFTER_SCROLL
             ));
         }
@@ -87,29 +86,29 @@ public class ExtensionPreferenceCategory extends ConditionalPreferenceCategory {
         if (SettingsStatus.longPressSpeedLockEnabled
                 || SettingsStatus.disableLongPressQuickShareEnabled
                 || SettingsStatus.disableLongPressRepostEnabled) {
-            addPreference(group(context, "Gestures"));
+            addPreference(group(context, "Жесты"));
         }
         if (SettingsStatus.longPressSpeedLockEnabled) {
             addPreference(new TogglePreference(
                     context,
-                    "Enable hold-and-slide 2x lock",
-                    "Use TikTok's native hold, slide down, and release gesture to lock 2x speed.",
+                    "Удерживай и свайпни для 2x",
+                    "Использует нативный жест TikTok (удерживай, свайпни вниз, отпусти) для фиксации скорости 2x.",
                     Settings.ENABLE_LONG_PRESS_SPEED_LOCK
             ));
         }
         if (SettingsStatus.disableLongPressQuickShareEnabled) {
             addPreference(new TogglePreference(
                     context,
-                    "Disable long-press quick share",
-                    "Keep long-pressing Share from opening TikTok's quick-share interaction.",
+                    "Отключить быструю отправку",
+                    "Убирает быстрое меню отправки при долгом нажатии на «Поделиться».",
                     Settings.DISABLE_LONG_PRESS_QUICK_SHARE
             ));
         }
         if (SettingsStatus.disableLongPressRepostEnabled) {
             addPreference(new TogglePreference(
                     context,
-                    "Disable long-press repost",
-                    "Keep holding Like from opening TikTok's repost action.",
+                    "Отключить репост по долгому нажатию",
+                    "Убирает меню репоста при долгом нажатии на «Нравится».",
                     Settings.DISABLE_LONG_PRESS_REPOST
             ));
         }
@@ -117,29 +116,29 @@ public class ExtensionPreferenceCategory extends ConditionalPreferenceCategory {
         if (SettingsStatus.hideSuggestedAccountsEnabled
                 || SettingsStatus.nonPersonalizedSearchEnabled
                 || SettingsStatus.liveSearchEnabled) {
-            addPreference(group(context, "Discovery and search"));
+            addPreference(group(context, "Обнаружение и поиск"));
         }
         if (SettingsStatus.hideSuggestedAccountsEnabled) {
             addPreference(new TogglePreference(
                     context,
-                    "Hide suggested accounts",
-                    "Remove suggested accounts from profile and inbox.",
+                    "Скрыть предлагаемые аккаунты",
+                    "Убирает предлагаемые аккаунты из профиля и входящих.",
                     Settings.HIDE_SUGGESTED_ACCOUNTS
             ));
         }
         if (SettingsStatus.nonPersonalizedSearchEnabled) {
             addPreference(new TogglePreference(
                     context,
-                    "Use non-personalized search",
-                    "Use TikTok's non-personalized search state instead of the saved account choice.",
+                    "Неперсонализированный поиск",
+                    "Использует неперсонализированный поиск TikTok вместо сохранённого выбора аккаунта.",
                     Settings.ENABLE_NON_PERSONALIZED_SEARCH
             ));
         }
         if (SettingsStatus.liveSearchEnabled) {
             addPreference(new TogglePreference(
                     context,
-                    "Show Live search",
-                    "Show TikTok's search entry in the Live drawer where supported.",
+                    "Показывать поиск в Live",
+                    "Показывает поиск TikTok в разделе Live, где это поддерживается.",
                     Settings.ENABLE_LIVE_SEARCH
             ));
         }
