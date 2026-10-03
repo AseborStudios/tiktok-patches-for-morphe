@@ -12,7 +12,7 @@ import app.morphe.extension.tiktok.settings.preference.TogglePreference;
 public class FeedNavigationPreferenceCategory extends ConditionalPreferenceCategory {
     public FeedNavigationPreferenceCategory(Context context, PreferenceScreen screen) {
         super(context, screen);
-        setTitle("Feed navigation");
+        setTitle("Навигация");
     }
 
     @Override
@@ -22,11 +22,11 @@ public class FeedNavigationPreferenceCategory extends ConditionalPreferenceCateg
 
     @Override
     public void addPreferences(Context context) {
-        addPreference(group(context, "Feed tabs"));
+        addPreference(group(context, "Вкладки ленты"));
         addPreference(new TogglePreference(
                 context,
-                "Filter feed tabs",
-                "Choose which loaded TikTok feed tabs should stay visible.",
+                "Фильтровать вкладки ленты",
+                "Выбери, какие загруженные вкладки TikTok должны оставаться видимыми.",
                 Settings.FEED_NAVIGATION
         ));
         addPreference(new TabSelectionPreference(
@@ -35,16 +35,16 @@ public class FeedNavigationPreferenceCategory extends ConditionalPreferenceCateg
         ));
         addPreference(new TogglePreference(
                 context,
-                "Block new TikTok tabs",
-                "Hide tabs TikTok adds later unless you allow them.",
+                "Блокировать новые вкладки TikTok",
+                "Скрывать вкладки, которые TikTok добавляет позже, пока ты их не разрешишь.",
                 Settings.FEED_NAVIGATION_BLOCK_NEW_TABS
         ));
 
-        addPreference(group(context, "Bottom navigation"));
+        addPreference(group(context, "Нижняя навигация"));
         addPreference(new TogglePreference(
                 context,
-                "Filter bottom tabs",
-                "Choose which loaded TikTok bottom navigation tabs should stay visible.",
+                "Фильтровать нижние вкладки",
+                "Выбери, какие загруженные нижние вкладки TikTok должны оставаться видимыми.",
                 Settings.BOTTOM_NAVIGATION
         ));
         addPreference(new TabSelectionPreference(
@@ -54,16 +54,16 @@ public class FeedNavigationPreferenceCategory extends ConditionalPreferenceCateg
         ));
         addPreference(new TogglePreference(
                 context,
-                "Block new bottom tabs",
-                "Hide bottom tabs TikTok adds later unless you allow them.",
+                "Блокировать новые нижние вкладки",
+                "Скрывать нижние вкладки, которые TikTok добавляет позже, пока ты их не разрешишь.",
                 Settings.BOTTOM_NAVIGATION_BLOCK_NEW_TABS
         ));
 
-        addPreference(group(context, "Other navigation"));
+        addPreference(group(context, "Другая навигация"));
         addPreference(new TogglePreference(
                 context,
-                "Hide Tako AI",
-                "Hide the Tako AI feed bubble above the profile button.",
+                "Скрыть Tako AI",
+                "Скрывает пузырь Tako AI над кнопкой профиля.",
                 Settings.HIDE_TAKO_AI
         ));
     }
