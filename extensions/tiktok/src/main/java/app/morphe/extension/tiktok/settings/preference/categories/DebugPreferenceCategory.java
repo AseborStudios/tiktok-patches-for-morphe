@@ -18,7 +18,7 @@ import app.morphe.extension.tiktok.settings.preference.TogglePreference;
 public class DebugPreferenceCategory extends ConditionalPreferenceCategory {
     public DebugPreferenceCategory(Context context, PreferenceScreen screen) {
         super(context, screen);
-        setTitle("Diagnostics");
+        setTitle("Диагностика");
     }
 
     @Override
@@ -31,34 +31,34 @@ public class DebugPreferenceCategory extends ConditionalPreferenceCategory {
         if (app.morphe.extension.tiktok.diagnostics.FeedObservationProbe.installed) {
             addPreference(app.morphe.extension.tiktok.diagnostics.FeedObservationProbe.controls(context));
         }
-        addPreference(group(context, "Logging and crash capture"));
+        addPreference(group(context, "Логи и краши"));
         addPreference(new TogglePreference(
                 context,
-                "Enable diagnostic logging",
-                "Only enable when recording logs to report an issue. Leaving it on for too long can make TikTok feel laggy and may lead to crashes.",
+                "Включить диагностические логи",
+                "Включай только для записи логов при сообщении о проблеме. Если оставить надолго — TikTok может начать лагать и вылетать.",
                 BaseSettings.DEBUG
         ));
 
         addPreference(new TogglePreference(
                 context,
-                "Capture crash reports locally",
-                "Save the latest available TikTok crash report for diagnostic export.",
+                "Сохранять отчёты о крашах",
+                "Сохраняет последний доступный отчёт о краше TikTok для диагностики.",
                 BaseSettings.CAPTURE_JAVA_CRASHES
         ));
 
-        addPreference(group(context, "Reports and stored data"));
+        addPreference(group(context, "Отчёты и сохранённые данные"));
         var logFilter = new TintedLogExportFilterPreference(context);
-        logFilter.setTitle("Included diagnostics");
+        logFilter.setTitle("Включённые диагностики");
         addPreference(logFilter);
 
         var exportLogs = new TintedExportDiagnosticReportPreference(context);
-        exportLogs.setTitle("Export diagnostic report");
-        exportLogs.setSummary("Copy a quick report or save the full report as a file.");
+        exportLogs.setTitle("Экспортировать отчёт");
+        exportLogs.setSummary("Скопировать краткий отчёт или сохранить полный отчёт в файл.");
         addPreference(exportLogs);
 
         var clearLogs = new TintedClearLogBufferPreference(context);
-        clearLogs.setTitle("Clear diagnostic data");
-        clearLogs.setSummary("Clear buffered events and saved crash reports.");
+        clearLogs.setTitle("Очистить диагностические данные");
+        clearLogs.setSummary("Очистить буфер событий и сохранённые отчёты о крашах.");
         addPreference(clearLogs);
     }
 
