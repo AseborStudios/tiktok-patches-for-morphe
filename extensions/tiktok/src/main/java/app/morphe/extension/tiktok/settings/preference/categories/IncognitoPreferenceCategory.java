@@ -11,7 +11,7 @@ import app.morphe.extension.tiktok.settings.preference.TogglePreference;
 public class IncognitoPreferenceCategory extends ConditionalPreferenceCategory {
     public IncognitoPreferenceCategory(Context context, PreferenceScreen screen) {
         super(context, screen);
-        setTitle("Incognito mode");
+        setTitle("Инкогнито");
     }
 
     @Override
@@ -23,14 +23,14 @@ public class IncognitoPreferenceCategory extends ConditionalPreferenceCategory {
     public void addPreferences(Context context) {
         addPreference(new TogglePreference(
                 context,
-                "Enable incognito",
-                "Watch TikTok without feeding the algorithm. Events are not sent while enabled.",
+                "Включить инкогнито",
+                "Смотри TikTok без следа для алгоритма. События не отправляются, пока режим включён. (Пока заглушка — реальная блокировка появится в следующих версиях.)",
                 Settings.INCOGNITO
         ));
         addPreference(new TogglePreference(
                 context,
-                "Lock local data",
-                "Require a password to access incognito data (likes, favourites).",
+                "Заблокировать локальные данные",
+                "Требовать пароль для доступа к данным инкогнито (лайки, избранное). (Пока заглушка.)",
                 Settings.INCOGNITO_LOCK
         ));
     }
