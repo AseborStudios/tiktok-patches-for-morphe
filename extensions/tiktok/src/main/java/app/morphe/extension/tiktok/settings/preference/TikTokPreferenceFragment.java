@@ -52,16 +52,16 @@ public class TikTokPreferenceFragment extends AbstractPreferenceFragment {
     private static DownloadPathPreference pendingDownloadPathPreference;
 
     private enum Section {
-        FEED_FILTER("Feed controls", "Choose which posts appear in your feeds."),
-        FEED_NAVIGATION("Feed navigation", "Feed tabs, bottom tabs, and Tako AI."),
-        INTERFACE("Interface", "Promotions, popups, and publish dates."),
-        COMMENTS("Comments and translation", "Translation, reactions, copy options, and split view."),
-        DOWNLOADS("Downloads", "Path, watermark, and offline videos."),
-        REGION("Region spoof", "Change the region TikTok reads."),
-        INCOGNITO("Incognito", "Watch without feeding the algorithm."),
-        SHARE_SHEET("Share sheet", "Send to, share via app, and video actions."),
-        BEHAVIOR("App behavior", "Sharing, playback, and gestures."),
-        DIAGNOSTICS("Diagnostics", "Logging, crash capture, and report export.");
+        FEED_FILTER("Лента", "Какие видео показывать в ленте."),
+        FEED_NAVIGATION("Навигация", "Вкладки ленты, нижние вкладки и Tako AI."),
+        INTERFACE("Интерфейс", "Промо, попапы и дата публикации."),
+        COMMENTS("Комментарии", "Перевод, реакции, копирование и разделённый экран."),
+        DOWNLOADS("Скачивание", "Путь, водяной знак и оффлайн-видео."),
+        REGION("Регион", "Смена региона, который читает TikTok."),
+        INCOGNITO("Инкогнито", "Смотри без следа для алгоритма."),
+        SHARE_SHEET("Поделиться", "Отправка, приложения и действия с видео."),
+        BEHAVIOR("Поведение", "Шэринг, воспроизведение и жесты."),
+        DIAGNOSTICS("Диагностика", "Логи, краши и экспорт отчётов.");
 
         final String title;
         final String description;
@@ -180,12 +180,10 @@ public class TikTokPreferenceFragment extends AbstractPreferenceFragment {
         final var context = getActivity();
         activeFragment = this;
 
-        // Currently no resources can be compiled for TikTok (fails with aapt error).
-        // So all TikTok Strings are hard coded in the extension.
-        restartDialogTitle = "Restart required";
-        restartDialogMessage = "Restart the app for this change to take effect.";
-        restartDialogButtonText = "Restart";
-        confirmDialogTitle = "Do you wish to proceed?";
+        restartDialogTitle = "Требуется перезапуск";
+        restartDialogMessage = "Перезапусти приложение, чтобы изменения вступили в силу.";
+        restartDialogButtonText = "Перезапустить";
+        confirmDialogTitle = "Продолжить?";
 
         Utils.setIsDarkModeEnabled(isDarkModeEnabled(context));
 
@@ -565,4 +563,3 @@ public class TikTokPreferenceFragment extends AbstractPreferenceFragment {
         }
     }
 }
-
