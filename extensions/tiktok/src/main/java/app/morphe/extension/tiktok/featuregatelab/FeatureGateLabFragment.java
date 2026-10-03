@@ -61,10 +61,10 @@ import app.morphe.extension.tiktok.settings.preference.SettingsUi;
 
 @SuppressWarnings({"deprecation", "SetTextI18n"})
 public final class FeatureGateLabFragment extends Fragment {
-    private static final String[] VIEW_LABELS = {"Loaded", "All actionable", "Overrides"};
-    private static final String[] FILTER_LABELS = {"All", "Boolean", "Enabled", "Disabled", "Unloaded"};
+    private static final String[] VIEW_LABELS = {"Загруженные", "Все действенные", "Переопределения"};
+    private static final String[] FILTER_LABELS = {"Все", "Логические", "Включены", "Отключены", "Не загружены"};
     private static final String[] SOURCE_LABELS = {
-            "All", "App AB", "Config", "Player", "Live", "Media", "Activity"
+            "Все", "App AB", "Конфиг", "Плеер", "Прямой эфир", "Медиа", "Центр активности"
     };
     private static final String[] SOURCE_MANAGERS = {
             null,
@@ -120,7 +120,7 @@ public final class FeatureGateLabFragment extends Fragment {
     public static void open(Activity activity) {
         int containerId = findFragmentContainer(activity);
         if (containerId == View.NO_ID) {
-            Utils.showToastLong("Feature Gate Lab could not find the settings container");
+            Utils.showToastLong("Feature Gate Lab не смог найти контейнер настроек");
             return;
         }
         FeatureGateLabSession.begin();
@@ -173,8 +173,8 @@ public final class FeatureGateLabFragment extends Fragment {
         masterRow.setGravity(Gravity.CENTER_VERTICAL);
         LinearLayout masterText = new LinearLayout(context);
         masterText.setOrientation(LinearLayout.VERTICAL);
-        masterText.addView(FeatureGateLabUi.body(context, "Enable overrides"), FeatureGateLabUi.matchWrap());
-        masterText.addView(FeatureGateLabUi.label(context, "Applies saved rules at supported getters"), FeatureGateLabUi.matchWrap());
+        masterText.addView(FeatureGateLabUi.body(context, "Включить переопределения"), FeatureGateLabUi.matchWrap());
+        masterText.addView(FeatureGateLabUi.label(context, "Применяет сохраненные правила в поддерживаемых геттерах"), FeatureGateLabUi.matchWrap());
         masterRow.addView(masterText, new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f));
         master = new Switch(context);
         master.setChecked(FeatureGateLabStore.masterEnabled());
@@ -186,7 +186,7 @@ public final class FeatureGateLabFragment extends Fragment {
 
         TextView warning = FeatureGateLabUi.label(
                 context,
-                "Account warning: forced client values apply to every account in this app data and cannot bypass server controls."
+                "Предупреждение об аккаунте: принудительные значения клиента применяются ко всем аккаунтам в этих данных приложения и не могут обойти управление на сервере."
         );
         warning.setTextColor(FeatureGateLabUi.warningColor(context));
         LinearLayout.LayoutParams warningParams = FeatureGateLabUi.matchWrap();
@@ -200,7 +200,7 @@ public final class FeatureGateLabFragment extends Fragment {
         searchRow.setBackground(SettingsUi.borderedSurface(context, 6, false));
         search = new EditText(context);
         search.setSingleLine(true);
-        search.setHint("Search words or key");
+        search.setHint("Поиск слов или ключа");
         search.setBackgroundColor(Color.TRANSPARENT);
         search.setTextColor(SettingsUi.textPrimary());
         search.setHintTextColor(SettingsUi.textSecondary());
@@ -304,7 +304,7 @@ public final class FeatureGateLabFragment extends Fragment {
         LinearLayout resultRow = new LinearLayout(context);
         resultRow.setOrientation(LinearLayout.HORIZONTAL);
         resultRow.setGravity(Gravity.CENTER_VERTICAL);
-        count = FeatureGateLabUi.label(context, "Loading gates...");
+        count = FeatureGateLabUi.label(context, "Загрузка шлюзов...");
         resultRow.addView(count, new LinearLayout.LayoutParams(0, FeatureGateLabUi.dp(context, 44), 1f));
         filterButton = FeatureGateLabUi.text(context, "", 14, SettingsUi.textPrimary(), Typeface.BOLD);
         filterButton.setGravity(Gravity.CENTER);
@@ -322,7 +322,7 @@ public final class FeatureGateLabFragment extends Fragment {
         ));
         controls.addView(resultRow, FeatureGateLabUi.matchWrap());
 
-        loading = FeatureGateLabUi.label(context, "Loading local catalog and current TikTok cache...");
+        loading = FeatureGateLabUi.label(context, "Загрузка локального каталога и текущего кэша TikTok...");
         controls.addView(loading, FeatureGateLabUi.matchWrap());
 
         FrameLayout listContainer = new FrameLayout(context);
@@ -336,7 +336,7 @@ public final class FeatureGateLabFragment extends Fragment {
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.MATCH_PARENT
         ));
-        empty = FeatureGateLabUi.label(context, "No gates match this search and filter.");
+        empty = FeatureGateLabUi.label(context, "Нет шлюзов, соответствующих этому поиску и фильтру.");
         empty.setGravity(Gravity.CENTER);
         empty.setPadding(
                 FeatureGateLabUi.dp(context, 24),
@@ -371,9 +371,9 @@ public final class FeatureGateLabFragment extends Fragment {
             return;
         }
         AlertDialog dialog = new AlertDialog.Builder(activity)
-                .setTitle("Review saved overrides")
-                .setMessage("Overrides saved for an older TikTok version were kept but disabled. Review their values before enabling them on TikTok 46.2.3.")
-                .setPositiveButton("Review", null)
+                .setTitle("Проверить сохраненные переопределения")
+                .setMessage("Переопределения, сохраненные для старой версии TikTok, были сохранены, но отключены. Проверьте их значения перед включением их на TikTok 46.2.3.")
+                .setPositiveButton("Проверить", null)
                 .create();
         showStyled(dialog);
     }
@@ -466,7 +466,7 @@ public final class FeatureGateLabFragment extends Fragment {
 
     private void load(boolean refresh) {
         loading.setVisibility(View.VISIBLE);
-        loading.setText(refresh ? "Refreshing current TikTok cache..." : "Loading local catalog and current TikTok cache...");
+        loading.setText(refresh ? "Обновление текущего кэша TikTok..." : "Загрузка локального каталога и текущего кэша TikTok...");
         FeatureGateCatalog.loadAsync(refresh, new FeatureGateCatalog.Callback() {
             @Override
             public void onLoaded(FeatureGateCatalog.Snapshot loaded) {
@@ -476,23 +476,23 @@ public final class FeatureGateLabFragment extends Fragment {
                     loading.setVisibility(View.GONE);
                 } else {
                     loading.setVisibility(View.VISIBLE);
-                    loading.setText("Loaded current values. Loading all known gates...");
+                    loading.setText("Загружены текущие значения. Загрузка всех известных шлюзов...");
                 }
-                empty.setText("No gates match this search and filter.");
+                empty.setText("Нет шлюзов, соответствующих этому поиску и фильтру.");
                 rebuild();
             }
 
             @Override
             public void onError(String message) {
                 if (!isAdded() || getView() == null) return;
-                loading.setText("Current cache unavailable: " + message);
+                loading.setText("Текущий кэш недоступен: " + message);
                 FeatureGateCatalog.Snapshot cached = FeatureGateCatalog.cachedSnapshot();
                 if (cached != null) {
                     snapshot = cached;
                     rebuild();
                 } else {
-                    count.setText("Gate data unavailable");
-                    empty.setText("No gate data is available. Refresh values from the menu to try again.");
+                    count.setText("Данные шлюза недоступны");
+                    empty.setText("Нет доступных данных шлюза. Обновите значения из меню, чтобы повторить попытку.");
                 }
             }
         });
@@ -537,7 +537,7 @@ public final class FeatureGateLabFragment extends Fragment {
             });
         }
 
-        count.setText(visible.size() + (visible.size() == 1 ? " result" : " results"));
+        count.setText(visible.size() + (visible.size() == 1 ? " результат" : " результатов"));
         adapter.notifyDataSetChanged();
         if (restoreListPosition && list != null) {
             int position = listPosition;
@@ -622,17 +622,17 @@ public final class FeatureGateLabFragment extends Fragment {
             tab.setTypeface(Typeface.DEFAULT, selected ? Typeface.BOLD : Typeface.NORMAL);
             indicator.setBackgroundColor(selected ? SettingsUi.ACCENT : Color.TRANSPARENT);
         }
-        if (filterButton != null) filterButton.setText("Filter: " + FILTER_LABELS[selectedFilter]);
+        if (filterButton != null) filterButton.setText("Фильтр: " + FILTER_LABELS[selectedFilter]);
     }
 
     private void showFilterPicker() {
         AlertDialog dialog = new AlertDialog.Builder(getActivity())
-                .setTitle("Show gates")
+                .setTitle("Показать шлюзы")
                 .setSingleChoiceItems(FILTER_LABELS, selectedFilter, (choiceDialog, which) -> {
                     onFilterSelected(which);
                     choiceDialog.dismiss();
                 })
-                .setNegativeButton("Cancel", null)
+                .setNegativeButton("Отмена", null)
                 .create();
         showStyled(dialog);
     }
@@ -641,13 +641,13 @@ public final class FeatureGateLabFragment extends Fragment {
         if (checked && !FeatureGateLabStore.warningAcknowledged()) {
             master.setChecked(false);
             AlertDialog dialog = new AlertDialog.Builder(getActivity())
-                    .setTitle("Enable Feature Gate Lab overrides?")
-                    .setMessage("Client-side override values apply to all accounts in this app data. Some gates can affect account safety, compliance, login, region, or payment behavior. Use only keys you can test and roll back.")
-                    .setPositiveButton("Enable", (ignored, which) -> {
+                    .setTitle("Включить переопределения Feature Gate Lab?")
+                    .setMessage("Значения переопределения на стороне клиента применяются ко всем аккаунтам в этих данных приложения. Некоторые шлюзы могут влиять на безопасность аккаунта, соответствие нормам, вход в систему, регион или поведение платежей. Используйте только ключи, которые вы можете протестировать и отменить.")
+                    .setPositiveButton("Включить", (ignored, which) -> {
                         FeatureGateLabStore.acknowledgeWarning();
                         master.setChecked(true);
                     })
-                    .setNegativeButton("Cancel", null)
+                    .setNegativeButton("Отмена", null)
                     .create();
             showStyled(dialog);
             return;
@@ -677,11 +677,11 @@ public final class FeatureGateLabFragment extends Fragment {
                 new ContextThemeWrapper(getActivity(), popupTheme),
                 anchor
         );
-        menu.getMenu().add(0, 1, 0, "Refresh values");
-        menu.getMenu().add(0, 2, 1, "Export loaded values");
-        menu.getMenu().add(0, 3, 2, "Import loaded values");
-        menu.getMenu().add(0, 4, 3, "Reset all overrides");
-        menu.getMenu().add(0, 5, 4, "Reset all Lab data");
+        menu.getMenu().add(0, 1, 0, "Обновить значения");
+        menu.getMenu().add(0, 2, 1, "Экспортировать загруженные значения");
+        menu.getMenu().add(0, 3, 2, "Импортировать загруженные значения");
+        menu.getMenu().add(0, 4, 3, "Сбросить все переопределения");
+        menu.getMenu().add(0, 5, 4, "Сбросить все данные Lab");
         menu.setOnMenuItemClickListener(item -> {
             switch (item.getItemId()) {
                 case 1:
@@ -717,7 +717,7 @@ public final class FeatureGateLabFragment extends Fragment {
                             "tiktok-46.2.3-loaded-feature-gates-" + timestamp + ".json.gz");
             startActivityForResult(intent, REQUEST_EXPORT_LOADED);
         } catch (Throwable throwable) {
-            Utils.showToastLong("Could not open the export file picker");
+            Utils.showToastLong("Не удалось открыть средство выбора файла экспорта");
         }
     }
 
@@ -730,7 +730,7 @@ public final class FeatureGateLabFragment extends Fragment {
                             new String[]{"application/gzip", "application/json", "application/octet-stream"});
             startActivityForResult(intent, REQUEST_IMPORT_LOADED);
         } catch (Throwable throwable) {
-            Utils.showToastLong("Could not open the import file picker");
+            Utils.showToastLong("Не удалось открыть средство выбора файла импорта");
         }
     }
 
@@ -741,12 +741,12 @@ public final class FeatureGateLabFragment extends Fragment {
                 if (activity == null) return;
                 ExportPayload payload = buildExportPayload();
                 try (OutputStream output = activity.getContentResolver().openOutputStream(uri, "w")) {
-                    if (output == null) throw new IllegalStateException("Document provider returned no output stream");
+                    if (output == null) throw new IllegalStateException("Поставщик документов не вернул выходной поток");
                     output.write(payload.gzipBytes);
                 }
-                postToast("Exported " + payload.count + " loaded values");
+                postToast("Экспортировано " + payload.count + " загруженных значений");
             } catch (Throwable throwable) {
-                postToast("Loaded-value file export failed");
+                postToast("Ошибка при экспорте файла загруженных значений");
             }
         }, "MorpheGateFileExport").start();
     }
@@ -758,12 +758,12 @@ public final class FeatureGateLabFragment extends Fragment {
                 if (activity == null) return;
                 byte[] compressed;
                 try (InputStream input = activity.getContentResolver().openInputStream(uri)) {
-                    if (input == null) throw new IllegalStateException("Document provider returned no input stream");
+                    if (input == null) throw new IllegalStateException("Поставщик документов не вернул входной поток");
                     compressed = readLimited(input, MAX_COMPRESSED_IMPORT_BYTES);
                 }
                 reviewLoadedImport(new JSONObject(readGzipJson(compressed)));
             } catch (Throwable throwable) {
-                postToast("Loaded-value file is invalid or too large");
+                postToast("Файл загруженных значений недействителен или слишком велик");
             }
         }, "MorpheGateFileImport").start();
     }
@@ -773,10 +773,10 @@ public final class FeatureGateLabFragment extends Fragment {
         FeatureGateCatalog.Snapshot currentSnapshot = snapshot;
         if (activity == null || currentSnapshot == null) return;
         if (!"loaded_values".equals(imported.optString("payload_kind"))) {
-            throw new IllegalArgumentException("Unsupported Feature Gate Lab export type");
+            throw new IllegalArgumentException("Неподдерживаемый тип экспорта Feature Gate Lab");
         }
         if (!FeatureGateLabStore.TARGET_VERSION.equals(imported.optString("tiktok_version"))) {
-            throw new IllegalArgumentException("Loaded values target a different TikTok version");
+            throw new IllegalArgumentException("Загруженные значения предназначены для другой версии TikTok");
         }
 
         Map<String, FeatureGateLabStore.Rule> existingRules = rulesByIdentity();
@@ -813,25 +813,25 @@ public final class FeatureGateLabFragment extends Fragment {
 
         JSONObject profile = new JSONObject();
         profile.put("schema", 1);
-        profile.put("target", "TikTok global");
+        profile.put("target", "TikTok глобальный");
         profile.put("tiktok_version", FeatureGateLabStore.TARGET_VERSION);
         profile.put("rules", candidates);
         FeatureGateLabStore.ImportReview review = FeatureGateLabStore.reviewProfile(
                 profile.toString(), currentSnapshot.byIdentity);
 
         String message = review.accepted.size()
-                + " missing, different, or overridden values can be imported.\n"
-                + same + " values and saved rules already match this account.\n"
-                + unavailable + " keys are unavailable in this catalog.\n"
-                + review.rejected.size() + " values failed type or boundary validation.\n\n"
-                + "Imported values remain disabled until you enable individual overrides.";
+                + " отсутствующих, различных или переопределённых значений можно импортировать.\n"
+                + same + " значений и сохраненных правил уже совпадают с этим аккаунтом.\n"
+                + unavailable + " ключей недоступны в этом каталоге.\n"
+                + review.rejected.size() + " значений не прошли валидацию типа или границ.\n\n"
+                + "Импортированные значения остаются отключенными, пока вы не включите отдельные переопределения.";
         activity.runOnUiThread(() -> {
             AlertDialog dialog = new AlertDialog.Builder(activity)
-                    .setTitle("Review loaded values")
+                    .setTitle("Проверить загруженные значения")
                     .setMessage(message)
-                    .setPositiveButton("Import disabled", (ignored, which) ->
+                    .setPositiveButton("Импортировать отключённые", (ignored, which) ->
                             applyImportAsync(review, review.accepted.size()))
-                    .setNegativeButton("Cancel", null)
+                    .setNegativeButton("Отмена", null)
                     .create();
             showStyled(dialog);
         });
@@ -843,17 +843,17 @@ public final class FeatureGateLabFragment extends Fragment {
                 FeatureGateLabStore.applyImport(review);
                 new Handler(Looper.getMainLooper()).post(() -> {
                     rebuild();
-                    Utils.showToastLong("Imported " + acceptedCount + " disabled values");
+                    Utils.showToastLong("Импортировано " + acceptedCount + " отключённых значений");
                 });
             } catch (Throwable throwable) {
-                postToast("Could not save imported values");
+                postToast("Не удалось сохранить импортированные значения");
             }
         }, "MorpheGateImportApply").start();
     }
 
     private ExportPayload buildExportPayload() throws Exception {
         FeatureGateCatalog.Snapshot currentSnapshot = snapshot;
-        if (currentSnapshot == null) throw new IllegalStateException("No loaded Feature Gate Lab snapshot");
+        if (currentSnapshot == null) throw new IllegalStateException("Нет загруженного моментального снимка Feature Gate Lab");
 
         JSONArray rules = new JSONArray();
         for (FeatureGateCatalog.Entry entry : currentSnapshot.entries) {
@@ -875,7 +875,7 @@ public final class FeatureGateLabFragment extends Fragment {
         JSONObject root = new JSONObject();
         root.put("schema", 1);
         root.put("payload_kind", "loaded_values");
-        root.put("target", "TikTok global");
+        root.put("target", "TikTok глобальный");
         root.put("tiktok_version", FeatureGateLabStore.TARGET_VERSION);
         root.put("exported_at_ms", System.currentTimeMillis());
         root.put("entry_count", rules.length());
@@ -894,7 +894,7 @@ public final class FeatureGateLabFragment extends Fragment {
 
     private static String readGzipJson(byte[] compressed) throws Exception {
         if (compressed.length < 2 || (compressed[0] & 0xff) != 0x1f || (compressed[1] & 0xff) != 0x8b) {
-            throw new IllegalArgumentException("Expected a gzip-compressed Feature Gate Lab JSON file");
+            throw new IllegalArgumentException("Ожидается сжатый файл JSON Feature Gate Lab в формате gzip");
         }
         try (GZIPInputStream gzip = new GZIPInputStream(new ByteArrayInputStream(compressed))) {
             return new String(readLimited(gzip, MAX_JSON_IMPORT_BYTES), StandardCharsets.UTF_8);
@@ -908,7 +908,7 @@ public final class FeatureGateLabFragment extends Fragment {
         int read;
         while ((read = input.read(buffer)) != -1) {
             total += read;
-            if (total > maxBytes) throw new IllegalArgumentException("File exceeds the import size limit");
+            if (total > maxBytes) throw new IllegalArgumentException("Файл превышает лимит размера импорта");
             output.write(buffer, 0, read);
         }
         return output.toByteArray();
@@ -935,15 +935,15 @@ public final class FeatureGateLabFragment extends Fragment {
 
     private void confirmReset(boolean allData) {
         if (!FeatureGateLabStore.masterEnabled()) {
-            Utils.showToastLong("Enable overrides before changing saved Lab data");
+            Utils.showToastLong("Включите переопределения перед изменением сохраненных данных Lab");
             return;
         }
         AlertDialog dialog = new AlertDialog.Builder(getActivity())
-                .setTitle(allData ? "Reset all Lab data?" : "Reset all overrides?")
+                .setTitle(allData ? "Сбросить все данные Lab?" : "Сбросить все переопределения?")
                 .setMessage(allData
-                        ? "This removes all rules, the master state, and the warning acknowledgement."
-                        : "This removes every saved override rule and selected value.")
-                .setPositiveButton("Reset", (ignored, which) -> {
+                        ? "Это удаляет все правила, главное состояние и подтверждение предупреждения."
+                        : "Это удаляет каждое сохраненное правило переопределения и выбранное значение.")
+                .setPositiveButton("Сбросить", (ignored, which) -> {
                     if (allData) {
                         FeatureGateLabStore.resetAllLabData();
                         master.setChecked(false);
@@ -952,7 +952,7 @@ public final class FeatureGateLabFragment extends Fragment {
                     }
                     rebuild();
                 })
-                .setNegativeButton("Cancel", null)
+                .setNegativeButton("Отмена", null)
                 .create();
         showStyled(dialog);
     }
@@ -1159,29 +1159,29 @@ public final class FeatureGateLabFragment extends Fragment {
             holder.type.setText(entry.shortSourceName() + " " + entry.type);
             String shownValue;
             if (rule != null && rule.enabled && FeatureGateLabStore.masterEnabled()) {
-                shownValue = "Returns " + rule.value;
+                shownValue = "Возвращает " + rule.value;
             } else if (entry.loaded) {
-                shownValue = "Current " + entry.currentValue;
+                shownValue = "Текущее " + entry.currentValue;
             } else if (rule != null) {
-                shownValue = "Saved " + rule.value;
+                shownValue = "Сохраненное " + rule.value;
             } else {
-                shownValue = "No current value";
+                shownValue = "Нет текущего значения";
             }
             holder.value.setText(shownValue);
 
             String state;
             int stateColor;
             if (rule != null && rule.enabled && FeatureGateLabRuntime.isTriggered(entry.manager, entry.key, entry.type)) {
-                state = "Getter used";
+                state = "Геттер использован";
                 stateColor = SettingsUi.ACCENT;
             } else if (rule != null && rule.enabled) {
-                state = "Waiting";
+                state = "Ожидание";
                 stateColor = FeatureGateLabUi.warningColor(context);
             } else if (rule != null) {
-                state = "Override off";
+                state = "Переопределение отключено";
                 stateColor = SettingsUi.textSecondary();
             } else {
-                state = entry.loaded ? "Loaded" : "Unloaded";
+                state = entry.loaded ? "Загружено" : "Не загружено";
                 stateColor = entry.loaded ? SettingsUi.textSecondary() : SettingsUi.textDisabled();
             }
             holder.state.setText(state);
