@@ -35,7 +35,7 @@ public final class SettingsHeaderPreference extends Preference {
         return new SettingsHeaderPreference(
                 context,
                 Kind.MASTER,
-                "Settings",
+                "Настройки",
                 null,
                 backAction
         );
@@ -93,7 +93,7 @@ public final class SettingsHeaderPreference extends Preference {
         topRow.setOrientation(LinearLayout.HORIZONTAL);
 
         ImageView back = new ImageView(context);
-        back.setContentDescription("Back");
+        back.setContentDescription("Вернутся");
         back.setImageDrawable(new BackDrawable());
         back.setOnClickListener(view -> {
             if (backAction != null) {
@@ -116,7 +116,7 @@ public final class SettingsHeaderPreference extends Preference {
         titleParams.topMargin = SettingsUi.dp(context, 2);
         container.addView(title, titleParams);
 
-        TextView menuLabel = SettingsUi.text(context, "MENUS", 12.5f, SettingsUi.textDisabled(), 1);
+        TextView menuLabel = SettingsUi.text(context, "РАЗДЕЛЫ", 12.5f, SettingsUi.textDisabled(), 1);
         LinearLayout.LayoutParams menuLabelParams = new LinearLayout.LayoutParams(-1, -2);
         menuLabelParams.leftMargin = SettingsUi.dp(context, 14);
         menuLabelParams.topMargin = SettingsUi.dp(context, 18);
