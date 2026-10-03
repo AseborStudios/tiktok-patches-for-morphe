@@ -325,17 +325,17 @@ public class TikTokPreferenceFragment extends AbstractPreferenceFragment {
 
         addMenu(screen, Section.BEHAVIOR, SettingsMenuPreference.Icon.BEHAVIOR, countBehaviorSettings());
 
-        if (FeatureGateLabRuntime.isInstalled()) {
-            screen.addPreference(new SettingsMenuPreference(
-                    context,
-                    "Feature Gate Lab",
-                    "Search and override gate flags",
-                    SettingsMenuPreference.Icon.LAB,
-                    0,
-                    preference -> {
-                        FeatureGateLabFragment.open(getActivity());
-                        return true;
-                    }
+    if (FeatureGateLabRuntime.isInstalled()) {
+        screen.addPreference(new SettingsMenuPreference(
+            context,
+            "Лаборатория функций",
+            "Поиск и переопределение флагов функций",
+            SettingsMenuPreference.Icon.LAB,
+            0,
+            preference -> {
+                FeatureGateLabFragment.open(getActivity());
+                return true;
+                }
             ));
         }
 
